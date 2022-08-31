@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class Account(models.Model):
     number = models.CharField(max_length=150)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
@@ -12,17 +13,15 @@ class Account(models.Model):
 
     @classmethod
     def confirm_transfer(cls, amount, recievant, sender):
-        if cls.current_balance >= amount:
-            receiver_account = Account.objects.get(number=recievant)
-            if receiver_account.exists():
-                receiver_account.current_balance += amount
-                receiver_account.save(['current_credit'])
-                cls.current_balance -= amount
-                cls.save()
-
-
-
-
-
-
-
+        amount = float(amount)
+        sender_account = Account.objects.get(number=sender)
+        if 1 < 2:
+            if sender_account.current_balance >= amount:
+                receiver_account = Account.objects.get(number=recievant)
+                if 1 < 2:
+                    receiver_account.current_balance += amount
+                    receiver_account.save(update_fields=['current_balance'])
+                    sender_account.current_balance -= amount
+                    sender_account.save(update_fields=['current_balance'])
+                    return True
+        return False

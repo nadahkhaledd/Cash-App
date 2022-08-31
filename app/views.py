@@ -1,6 +1,7 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
 from django.contrib.auth.models import User
+from .forms import TransferForm
 from .models import Account
 
 def index(request):
@@ -14,6 +15,12 @@ def profile(request, username):
 
 def transfer(request):
     if request.method == "POST":
-        pass
-    return render(request, 'transfer.html', {"data": 'DrinkForm'})
+        form = TransferForm(request.POST)
+        if form.is_valid():
+            if (Account.confirm_transfer(form.data['amount'], form.data['receiver_account_number'],
+                                     form.data['sender'])):
+                return HttpResponseRedirect('/app/')
+    else:
+        form = TransferForm()
+    return render(request, 'transfer.html', {"form": form})
 
