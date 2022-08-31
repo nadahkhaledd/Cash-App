@@ -1,27 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>Transfer money</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
-              integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    </head>
-    <body>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
-            integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
-            crossorigin="anonymous"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>Transfer money</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+</head>
+<body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
+        crossorigin="anonymous"></script>
 
-        {% extends 'base.html' %}
-        {% block content %}
-            <div class="container" style="padding: 30px">
-                <div class="col">
-                        <form method="POST"  enctype="multipart/form-data" style="align-content: center; padding-left: 20px">
-                            {% csrf_token %}
-                            {{ form.as_p }}
-                            <input type="submit" value="Transfer">
-                        </form>
-                </div>
-            </div>
-        {% endblock %}
-    </body>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container" style="padding: 30px">
+        <h1>Transfer</h1>
+        <div class="row">
+            <form method="POST" enctype="multipart/form-data" style="align-content: center; padding-left: 20px">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <input type="submit" value="Transfer">
+            </form>
+            <h3>fees : <span>0.0</span></h3>
+        </div>
+    </div>
+{% endblock %}
+</body>
 </html>
