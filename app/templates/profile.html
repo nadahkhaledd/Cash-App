@@ -25,7 +25,7 @@
                                     <div class="card-body">
                                         <h2 class="card-title">{{ account.number }}</h2>
                                         <p class="card-text"
-                                           style="color: blue; font-size: xx-large">{{ account.current_credit }}
+                                           style="color: blue; font-size: xx-large">{{ account.current_balance }}
                                             EGP</p>
                                     </div>
                                 </div>
@@ -41,7 +41,7 @@
         <div class="row">
             <div class="col-4">
                 <div class="text-center">
-                    <button type="button" class="btn btn-primary">Transfer</button>
+                    <button onclick="location.href = '/app/transfer/';" id="myButton" class="float-left submit-button" >Transfer</button>
                 </div>
             </div>
         </div>

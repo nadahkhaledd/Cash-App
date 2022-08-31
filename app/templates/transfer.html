@@ -11,8 +11,18 @@
             integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa"
             crossorigin="anonymous"></script>
 
-        <div class="container">
-
-        </div>
+        {% block content %}
+            <div class="container" style="padding: 30px">
+                <div class="col">
+                        <form method="POST"  enctype="multipart/form-data" style="align-content: center; padding-left: 20px">
+                            {% csrf_token %}
+                            <input type="text"  alt="receivant account number">
+                            <input  type="number" alt="amount to be transferred">
+                            <button class="button is-success is-fullwidth is-medium mt-5"
+                                    type="submit">Confirm transfer</button>
+                        </form>
+                </div>
+            </div>
+        {% endblock %}
     </body>
 </html>
