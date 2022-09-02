@@ -51,7 +51,11 @@ class Transaction(models.Model):
     def save(self, *args, **kwargs):
         if self.type == 'TR':
             Account.confirm_transfer(self.amount, self.receivant.number, self.sender.number)
-        # elif self.type in ('cash in', 'in', 'Cash in', 'In', 'deposit', 'Deposit'):
-        #     self.receivant.current_balance += self.amount
-        # elif self.type in ('cash out', 'out')
+        elif self.type == 'D':
+            self.receivant.current_balance += self.amount
+            self.receivant.save(update_fields=['current_balance'])
+        elif self.type == 'W':
+            if self.receivant.current_balance >= self.amount:
+                self.receivant.current_balance -= self.amount
+                self.receivant.save(update_fields=['current_balance'])
         super(Transaction, self).save(*args, **kwargs)
