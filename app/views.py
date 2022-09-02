@@ -19,7 +19,7 @@ def transfer(request):
         if form.is_valid():
             if (Account.confirm_transfer(form.data['amount'], form.data['receiver_account_number'],
                                      form.data['sender'])):
-                return HttpResponseRedirect('/app/')
+                return HttpResponseRedirect('/')
     else:
         form = TransferForm()
     return render(request, 'transfer.html', {"form": form})
