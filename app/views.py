@@ -4,9 +4,6 @@ from django.contrib.auth.models import User
 from .forms import TransferForm
 from .models import Account
 
-def index(request):
-    return HttpResponse('Hello')
-
 def profile(request, username):
     user = User.objects.get(username=username)
     accounts = user.account_set.all()
