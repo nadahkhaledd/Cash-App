@@ -31,10 +31,12 @@ class Account(models.Model):
 
 class Transaction(models.Model):
     amount = models.FloatField(default=0.0)
+    fees = models.FloatField(default=0.0)
     type = models.CharField(max_length=150)
     receivant = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='receivant')
     sender = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='sender')
 
     def save(self, *args, **kwargs):
-        Account.confirm_transfer(self.amount, self.receivant.number, self.sender.number)
+        if self.type in ('transfer', 'Transfer'):
+            Account.confirm_transfer(self.amount, self.receivant.number, self.sender.number)
         super(Transaction, self).save(*args, **kwargs)
