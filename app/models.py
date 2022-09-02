@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import gettext_lazy as _
 
 
 class Account(models.Model):
@@ -30,13 +31,27 @@ class Account(models.Model):
         return False
 
 class Transaction(models.Model):
+    class TransactionType(models.TextChoices):
+        DEPOSIT = 'D', _('Deposit')
+        WITHDRAW = 'W', _('Withdraw')
+        TRANSFER = 'TR', _('Transfer')
+
+
     amount = models.FloatField(default=0.0)
     fees = models.FloatField(default=0.0)
-    type = models.CharField(max_length=150)
+    type = models.CharField(
+        max_length=2,
+        choices=TransactionType.choices,
+    )
     receivant = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='receivant')
     sender = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='sender')
 
+
+
     def save(self, *args, **kwargs):
-        if self.type in ('transfer', 'Transfer'):
+        if self.type == 'TR':
             Account.confirm_transfer(self.amount, self.receivant.number, self.sender.number)
+        # elif self.type in ('cash in', 'in', 'Cash in', 'In', 'deposit', 'Deposit'):
+        #     self.receivant.current_balance += self.amount
+        # elif self.type in ('cash out', 'out')
         super(Transaction, self).save(*args, **kwargs)
