@@ -20,12 +20,13 @@ class Account(models.Model):
             if sender_account.current_balance >= amount:
                 receiver_account = Account.objects.filter(number=recievant)
                 if receiver_account.exists():
-                    receiver_account = receiver_account.get(number=recievant)
-                    receiver_account.current_balance += amount
-                    receiver_account.save(update_fields=['current_balance'])
-                    sender_account.current_balance -= amount
-                    sender_account.save(update_fields=['current_balance'])
-                    return True
+                    if recievant != sender:
+                        receiver_account = receiver_account.get(number=recievant)
+                        receiver_account.current_balance += amount
+                        receiver_account.save(update_fields=['current_balance'])
+                        sender_account.current_balance -= amount
+                        sender_account.save(update_fields=['current_balance'])
+                        return True
         return False
 
 class Transaction(models.Model):

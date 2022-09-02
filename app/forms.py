@@ -1,13 +1,6 @@
 from django import forms
 class TransferForm(forms.Form):
-    sender = forms.CharField(required=True,
-                                     widget=forms.widgets.TextInput(
-                                         attrs={
-                                             "placeholder": "sender account number",
-                                             "class": "textinput is-success is-medium",
-                                         }
-                                     ),
-                                     label="Sender account number", )
+    sender = forms.ChoiceField(required=True, choices=)
 
     receiver_account_number = forms.CharField(required=True,
                                      widget=forms.widgets.TextInput(
