@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+import django.utils.timezone as timezone
 from django.utils.translation import gettext_lazy as _
 
 
@@ -39,6 +40,7 @@ class Transaction(models.Model):
 
     amount = models.FloatField(default=0.0)
     fees = models.FloatField(default=0.0)
+    date = models.DateTimeField(default=timezone.now)
     type = models.CharField(
         max_length=2,
         choices=TransactionType.choices,
