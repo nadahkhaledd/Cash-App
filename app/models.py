@@ -51,8 +51,10 @@ class Transaction(models.Model):
     sender = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='sender')
 
     def save(self, *args, **kwargs):
-        # if self.type == 'TR':
-        #     Account.confirm_transfer(self.amount, self.receivant.number, self.sender.number)
+        if self.type == 'TR':
+            self.fees = self.amount * 0.04
+            self.amount -= self.fees
+             # Account.confirm_transfer(self.amount, self.receivant.number, self.sender.number)
         if self.type == 'D':
             self.receivant.current_balance += self.amount
             self.receivant.save(update_fields=['current_balance'])
