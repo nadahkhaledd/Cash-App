@@ -29,12 +29,14 @@
                         </div>
                     </div>
                 </div>
+            {% if not user.is_superuser %}
             <div class="col-3 " style="justify-self: center">
                 <div class="text-center" style="margin-top: 100px;">
                     <a role="button" type="button" class=" text-center btn btn-dark d-flex align-items-center justify-content-center" href="{% url 'transfer' %}" style="margin-left: 60px">
                     Transfer</a>
                 </div>
             </div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
