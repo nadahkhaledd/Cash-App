@@ -38,6 +38,8 @@ class Transaction(models.Model):
     class TransactionType(models.TextChoices):
         DEPOSIT = 'D', _('Deposit')
         WITHDRAW = 'W', _('Withdraw')
+        TRANSFER = 'TR', _('Transfer')
+
 
     amount = models.FloatField(default=0.0)
     fees = models.FloatField(default=0.0)

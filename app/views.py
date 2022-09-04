@@ -18,14 +18,11 @@ def profile(request):
 
 def transfer(request):
     if request.method == "POST":
-        print('post')
         form = TransferForm(request.POST)
         if form.is_valid():
-            print('valid')
             if Account.confirm_transfer(form.data['amount'], form.data['receiver_account_number'],
                                         form.data['sender']):
-                print('iff')
-                # return HttpResponseRedirect()
+                return HttpResponseRedirect('/')
     else:
         form = TransferForm()
     return render(request, 'transfer.html', {"form": form})
