@@ -16,23 +16,21 @@ class Account(models.Model):
     @classmethod
     def confirm_transfer(cls, amount, recievant, sender):
         amount = float(amount)
-        sender_account = Account.objects.filter(number=sender)
-        if sender_account.exists():
-            sender_account = sender_account.get(number=sender)
-            if sender_account.current_balance >= amount:
-                receiver_account = Account.objects.filter(number=recievant)
-                if receiver_account.exists():
-                    if recievant != sender:
-                        receiver_account = receiver_account.get(number=recievant)
-                        fees = amount * 0.04
-                        amount -= fees
-                        receiver_account.current_balance += amount
-                        receiver_account.save(update_fields=['current_balance'])
-                        sender_account.current_balance -= amount
-                        sender_account.save(update_fields=['current_balance'])
-                        transaction = Transaction(amount=amount, fees=fees, type='TR', receivant=receiver_account, sender=sender_account)
-                        transaction.save()
-                        return True
+        if sender.current_balance >= amount:
+            receiver_account = Account.objects.filter(number=recievant)
+            if receiver_account.exists():
+                if recievant != sender:
+                    receiver_account = receiver_account[0]
+                    fees = amount * 0.04
+                    amount -= fees
+                    receiver_account.current_balance += amount
+                    receiver_account.save(update_fields=['current_balance'])
+                    sender.current_balance -= amount
+                    sender.save(update_fields=['current_balance'])
+                    transaction = Transaction(amount=amount, fees=fees, type='TR', receivant=receiver_account,
+                                              sender=sender)
+                    transaction.save()
+                    return True
         return False
 
 

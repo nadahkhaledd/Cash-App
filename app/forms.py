@@ -1,13 +1,13 @@
 from django import forms
 class TransferForm(forms.Form):
-    sender = forms.CharField(required=True,
-                                     widget=forms.widgets.TextInput(
-                                         attrs={
-                                             "placeholder": "sender account number",
-                                             "class": "textinput is-success is-medium",
-                                         }
-                                     ),
-                                     label="Sender account number", )
+    # sender = forms.CharField(required=True,
+    #                                  widget=forms.widgets.TextInput(
+    #                                      attrs={
+    #                                          "placeholder": "sender account number",
+    #                                          "class": "textinput is-success is-medium",
+    #                                      }
+    #                                  ),
+    #                                  label="Sender account number", )
 
     receiver_account_number = forms.CharField(required=True,
                                      widget=forms.widgets.TextInput(

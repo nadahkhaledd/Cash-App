@@ -19,7 +19,8 @@ def transfer(request):
         form = TransferForm(request.POST)
         if form.is_valid():
             if Account.confirm_transfer(form.data['amount'], form.data['receiver_account_number'],
-                                        form.data['sender']):
+                                        request.user.username):
+
                 return HttpResponseRedirect('/')
     else:
         form = TransferForm()

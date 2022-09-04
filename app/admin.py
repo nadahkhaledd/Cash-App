@@ -3,7 +3,7 @@ from .models import Account, Transaction
 
 
 class AccountAdmin(admin.ModelAdmin):
-    list_display = ['number', 'user', 'date_created']
+    list_display = ['number', 'user', 'current_balance', 'date_created']
 
 
 class TransactionAdmin(admin.ModelAdmin):
