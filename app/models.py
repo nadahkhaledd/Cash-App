@@ -40,7 +40,6 @@ class Transaction(models.Model):
         WITHDRAW = 'W', _('Withdraw')
         TRANSFER = 'TR', _('Transfer')
 
-
     amount = models.FloatField(default=0.0)
     fees = models.FloatField(default=0.0)
     date = models.DateTimeField(default=timezone.now)

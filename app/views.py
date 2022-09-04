@@ -9,9 +9,7 @@ from .models import Account
 @login_required
 def profile(request):
     username = request.user.username
-    print('username', username)
     user = User.objects.filter(username=username)[0]
-    print('user', user)
     account = user.account_set.all()[0]
     return render(request, 'profile.html', {'user': user, 'account': account})
 
