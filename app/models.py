@@ -24,11 +24,13 @@ class Account(models.Model):
                 if receiver_account.exists():
                     if recievant != sender:
                         receiver_account = receiver_account.get(number=recievant)
+                        fees = amount * 0.04
+                        amount -= fees
                         receiver_account.current_balance += amount
                         receiver_account.save(update_fields=['current_balance'])
                         sender_account.current_balance -= amount
                         sender_account.save(update_fields=['current_balance'])
-                        transaction = Transaction(amount=amount, type='TR', receivant=receiver_account, sender=sender_account)
+                        transaction = Transaction(amount=amount, fees=fees, type='TR', receivant=receiver_account, sender=sender_account)
                         transaction.save()
                         return True
         return False
@@ -52,8 +54,10 @@ class Transaction(models.Model):
 
     def save(self, *args, **kwargs):
         if self.type == 'TR':
-            self.fees = self.amount * 0.04
-            self.amount -= self.fees
+            admin = Account.objects.get(number='admin1')
+            admin.current_balance += self.fees
+            admin.save(update_fields=['current_balance'])
+
              # Account.confirm_transfer(self.amount, self.receivant.number, self.sender.number)
         if self.type == 'D':
             self.receivant.current_balance += self.amount

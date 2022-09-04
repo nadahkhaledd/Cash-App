@@ -1,7 +1,7 @@
 from django.test import TestCase
 import django.utils.timezone as timezone
 import datetime
-from .models import Transaction
+from app.models import Transaction
 
 
 class TransactionTest(TestCase):
