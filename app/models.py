@@ -28,6 +28,8 @@ class Account(models.Model):
                         receiver_account.save(update_fields=['current_balance'])
                         sender_account.current_balance -= amount
                         sender_account.save(update_fields=['current_balance'])
+                        transaction = Transaction(amount=amount, type='TR', receivant=receiver_account, sender=sender_account)
+                        transaction.save()
                         return True
         return False
 

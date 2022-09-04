@@ -6,8 +6,8 @@ from .models import Account
 
 def profile(request, username):
     user = User.objects.get(username=username)
-    accounts = user.account_set.all()
-    return render(request, 'profile.html', {'user': user, 'accounts': accounts})
+    account = user.account_set.all()[0]
+    return render(request, 'profile.html', {'user': user, 'account': account})
 
 
 def transfer(request):
