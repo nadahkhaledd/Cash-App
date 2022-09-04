@@ -33,12 +33,11 @@ class Account(models.Model):
                         return True
         return False
 
+
 class Transaction(models.Model):
     class TransactionType(models.TextChoices):
         DEPOSIT = 'D', _('Deposit')
         WITHDRAW = 'W', _('Withdraw')
-        TRANSFER = 'TR', _('Transfer')
-
 
     amount = models.FloatField(default=0.0)
     fees = models.FloatField(default=0.0)
@@ -50,12 +49,10 @@ class Transaction(models.Model):
     receivant = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='receivant')
     sender = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='sender')
 
-
-
     def save(self, *args, **kwargs):
-        if self.type == 'TR':
-            Account.confirm_transfer(self.amount, self.receivant.number, self.sender.number)
-        elif self.type == 'D':
+        # if self.type == 'TR':
+        #     Account.confirm_transfer(self.amount, self.receivant.number, self.sender.number)
+        if self.type == 'D':
             self.receivant.current_balance += self.amount
             self.receivant.save(update_fields=['current_balance'])
         elif self.type == 'W':

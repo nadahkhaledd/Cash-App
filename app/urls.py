@@ -4,7 +4,8 @@ from . import views
 
 urlpatterns = [
     path("", include("django.contrib.auth.urls")),
-    path(r'<str:username>', views.profile, name='profile'),
+    path('profile/', views.profile, name='profile'),
+    # path(r'<str:username>/', views.profile, name='profile'),
     path('transfer/', views.transfer, name='transfer'),
     path('', TemplateView.as_view(template_name='registration/home.html'), name='home'),
 ]

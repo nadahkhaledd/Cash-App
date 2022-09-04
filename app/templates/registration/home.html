@@ -5,7 +5,7 @@
 {% block content %}
 {% if user.is_authenticated %}
     <h2>Hi {{ user.username }}!</h2>
-    <p><a href="{% url 'profile' user.username %}">profile</a></p>
+    <p><a href="{% url 'profile'%}">profile</a></p>
 {% else %}
     <div class="center" style="align-items: center; margin-left: 350px; margin-top: 50px">
         <h2>You are not logged in</h2>
