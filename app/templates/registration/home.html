@@ -8,7 +8,13 @@
         <div class="text-center justify-content-center" style="padding-top: 50px">
         <h2>Hi {{ user.username }}!</h2>
         <a role="button" type="button" class="btn btn-dark" href="{% url 'profile' %}">Profile</a>
-        <a role="button" type="button" class="btn btn-dark" href="{% url 'transfer' %}" style="margin-left: 60px">Transfer</a>
+        {% if not user.is_superuser %}
+            <a role="button" type="button" class="btn btn-dark" href="{% url 'transfer' %}" style="margin-left: 60px">Transfer</a>
+        {% endif %}
+
+        {% if user.is_superuser %}
+            <a role="button" type="button" class="btn btn-dark" href="/admin/" style="margin-left: 60px">Admin</a>
+        {% endif %}
     </div>
     </div>
 
