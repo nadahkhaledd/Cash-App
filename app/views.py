@@ -11,7 +11,7 @@ def profile(request):
     username = request.user.username
     user = User.objects.filter(username=username)[0]
     account = user.account_set.all()[0]
-    transactions = Transaction.objects.filter(receivant=account, type='D')
+    transactions = reversed(Transaction.objects.filter(receivant=account, type='D')[:10])
     return render(request, 'profile.html', {'user': user, 'account': account, 'transactions': transactions})
 
 
