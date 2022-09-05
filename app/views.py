@@ -3,7 +3,7 @@ from django.shortcuts import render, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .forms import TransferForm
-from .models import Account
+from .models import Account, Transaction
 
 
 @login_required
@@ -11,7 +11,8 @@ def profile(request):
     username = request.user.username
     user = User.objects.filter(username=username)[0]
     account = user.account_set.all()[0]
-    return render(request, 'profile.html', {'user': user, 'account': account})
+    transactions = Transaction.objects.filter(receivant=account, type='D')
+    return render(request, 'profile.html', {'user': user, 'account': account, 'transactions': transactions})
 
 
 def transfer(request):

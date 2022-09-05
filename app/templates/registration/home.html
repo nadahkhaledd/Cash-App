@@ -4,10 +4,14 @@
 
 {% block content %}
 {% if user.is_authenticated %}
-    <div class="text-center justify-content-center">
+    <div>
+        <div class="text-center justify-content-center" style="padding-top: 50px">
         <h2>Hi {{ user.username }}!</h2>
-        <p><a href="{% url 'profile'%}">profile</a></p>
+        <a role="button" type="button" class="btn btn-dark" href="{% url 'profile' %}">Profile</a>
+        <a role="button" type="button" class="btn btn-dark" href="{% url 'transfer' %}" style="margin-left: 60px">Transfer</a>
     </div>
+    </div>
+
 {% else %}
     <div class="center" style="align-items: center; margin-left: 350px;">
         <h2>You are not logged in</h2>
