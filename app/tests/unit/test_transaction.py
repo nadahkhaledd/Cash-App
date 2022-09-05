@@ -7,6 +7,6 @@ from app.models import Transaction
 class TransactionTest(TestCase):
     def test_was_created_recently(self):
 
-        time = timezone.now() + datetime.timedelta(days=30)
+        time = timezone.now()
         future_transaction = Transaction(date=time)
-        self.assertNotEquals(future_transaction.date, timezone.now())
+        self.assertEqual(future_transaction.date, timezone.now())
