@@ -7,13 +7,45 @@
     <div>
         <div class="text-center justify-content-center" style="padding-top: 50px">
         <h2>Hi {{ user.username }}!</h2>
-        <a role="button" type="button" class="btn btn-dark" href="{% url 'profile' %}">Profile</a>
+        <a role="button" type="button" class="btn btn-dark" href="{% url 'profile' %}" style="
+            width: 10%;
+            height: 40px;
+            display: inline;
+            align-items: center;
+            color: antiquewhite;
+            justify-content: space-between;
+            padding: 10px 15px;
+            background-image: linear-gradient(to right, cadetblue 0%, #79CBCA 51%, #77A1D3 100%);
+            border: none;
+            transition: 0.5s;
+            background-size: 200% auto;">Profile</a>
         {% if not user.is_superuser %}
-            <a role="button" type="button" class="btn btn-dark" href="{% url 'transfer' %}" style="margin-left: 60px">Transfer</a>
+            <a role="button" type="button" class="btn btn-dark" href="{% url 'transfer' %}" style="width: 10%;
+            height: 40px;
+            text-align: center;
+            display: inline;
+            align-items: center;
+            color: antiquewhite;
+            justify-content: space-between;
+            padding: 0 15px;
+            background-image: linear-gradient(to right, cadetblue 0%, #79CBCA 51%, #77A1D3 100%);
+            border: none;
+            transition: 0.5s;
+            background-size: 200% auto;">Transfer</a>
         {% endif %}
 
         {% if user.is_superuser %}
-            <a role="button" type="button" class="btn btn-dark" href="/admin/" style="margin-left: 60px">Admin</a>
+            <a role="button" type="button" class="btn btn-dark" href="/admin/" style="width: 10%;
+            height: 40px;
+            display: inline;
+            align-items: center;
+            color: antiquewhite;
+            justify-content: space-between;
+            padding: 0 15px;
+            background-image: linear-gradient(to right, cadetblue 0%, #79CBCA 51%, #77A1D3 100%);
+            border: none;
+            transition: 0.5s;
+            background-size: 200% auto;">Admin</a>
         {% endif %}
     </div>
     </div>
@@ -21,7 +53,18 @@
 {% else %}
     <div class="center" style="align-items: center; margin-left: 350px;">
         <h2>You are not logged in</h2>
-        <a role="button" type="button" class="btn btn-dark" href="{% url 'login' %}" style="margin-left: 60px">Login</a>
+        <a role="button" type="button" class="btn btn-dark" href="{% url 'login' %}" style="width: 10%;
+            height: 40px;
+            text-align: center;
+            display: inline;
+            align-items: center;
+            color: antiquewhite;
+            justify-content: space-between;
+            padding: 0 15px;
+            background-image: linear-gradient(to right, darkslategray 0%, #79CBCA 51%, cadetblue 70%);
+            border: none;
+            transition: 0.5s;
+            background-size: 200% auto; margin-left: 60px">Login</a>
     </div>
 
 {% endif %}
