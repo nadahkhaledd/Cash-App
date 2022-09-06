@@ -12,17 +12,13 @@ metadata:
 spec:
   tls:
   - hosts:
-    - neqabty.et3.co
-    secretName: neqabty.et3.co-cert
+    - nadah.internship.et3.co
+    secretName: nadah.internship.et3.co-cert
   rules:
-  - host: neqabty.et3.co
+  - host: nadah.internship.et3.co
     http:
       paths:
       - path: /
         backend:
           serviceName: nadah-internship
-          servicePort: 8002
-      - path: /media
-        backend:
-          serviceName: nadah-media-internship
-          servicePort: 80
+          servicePort: 8000

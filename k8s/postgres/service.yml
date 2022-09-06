@@ -1,13 +1,13 @@
 apiVersion: v1
 kind: Service
 metadata:
-  namespace: ese
-  name: postgres-ese-communities
+  namespace: internship
+  name: postgres-internship-nadah
   labels:
-    service: postgres-ese-communities
+    service: postgres-internship-nadah
 spec:
   selector:
-    service: postgres-ese-communities
+    service: postgres-internship-nadah
   type: ClusterIP
   ports:
   - port: 5432

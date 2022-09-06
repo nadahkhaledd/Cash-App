@@ -27,19 +27,17 @@ spec:
           - name: DEBUG
             value: "False"        
           - name: SQL_USER
-            value: internship
+            value: postres
           - name: SQL_ENGINE
             value: django.db.backends.postgresql_psycopg2
           - name: SQL_PASSWORD
-            value: internship123
+            value: postgres
           - name: SQL_HOST
             value: postgres-internship-nadah
           - name: SQL_PORT
             value: "5432"
           - name: SQL_DB
             value: postgres
-          - name: MEDIA_ROOT
-            value: /usr/src/media
         volumeMounts:
         - mountPath: /usr/src/app/data
           name: nadah-internship-volume-mount

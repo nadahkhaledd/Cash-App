@@ -1,8 +1,8 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  namespace: ese
-  name: postgres-ese-communities-pvc
+  namespace: internship
+  name: postgres-internship-nadah-pvc
   labels:
     type: local
 spec:
@@ -11,5 +11,5 @@ spec:
   resources:
     requests:
       storage: 2Gi
-  volumeName: postgres-ese-communities-pv
+  volumeName: postgres-internship-nadah-pv
   storageClassName: standard
