@@ -63,13 +63,15 @@
                                 EGP</p>
                         </div>
                     </div>
-                    <div style="text-align: end; padding-top: 50px">
+                    <div>
+                        {% if not user.is_superuser %}
+                        <div style="text-align: end; padding-top: 50px">
                         <button type="button" class="collapsible"><b>last deposits</b></button>
                         <div class="content">
                             <p>Lorem ipsum...</p>
                         </div>
                     </div>
-                    <div>
+                        <div>
                         {% for transaction in transactions %}
                             <div class="card">
                                 <div class="card-body">
@@ -81,27 +83,15 @@
                             </div>
                         {% endfor %}
                     </div>
+                        {% endif %}
+                    </div>
+
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
 
-<script>
-    var coll = document.getElementsByClassName("collapsible");
-    var i;
 
-    for (i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var content = document.getElementsByClassName("content");
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    }
-</script>
 </body>
 </html>

@@ -6,6 +6,11 @@ from datetime import date
 
 class AccountTest(TestCase):
     def test_confirm_transfer(self):
+        admin = User(username='admin', password='admin1234')
+        admin_account = Account(number='admin1', date_created=date.today(), user=admin)
+        admin.save()
+        admin_account.save()
+
         user = User(username='test', password='test1234')
         receiver = Account(number='qwe123rty098h', date_created=date.today(), user=user, current_balance=150.0)
         user.save()
