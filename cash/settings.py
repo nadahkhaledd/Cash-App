@@ -75,17 +75,28 @@ WSGI_APPLICATION = 'cash.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': os.environ.get('MYSQL_DB', 'cashapp'),
+#         'USER': 'root',
+#         'PASSWORD': os.environ.get('MYSQL_ROOT_PASSWORD', '0000'),
+#         'HOST': os.environ.get('MYSQL_HOST', '127.0.0.1'),
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+#         }
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.environ.get('MYSQL_DB', 'cashapp'),
-        'USER': os.environ.get('MYSQL_USER', 'root'),
-        'PASSWORD': os.environ.get('MYSQL_PASSWORD', '0000'),
-        'HOST': os.environ.get('MYSQL_HOST', '127.0.0.1'),
-        'PORT': '3306',
-        'OPTIONS': {
-            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
-        }
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': os.environ.get('POSTGRES_NAME'),
+        'USER': os.environ.get('POSTGRES_USER'),
+        'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
+        'HOST': 'db',
+        'PORT': '5432',
     }
 }
 
@@ -138,6 +149,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = "home"
-LOGOUT_REDIRECT_URL = "home"
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+LOGOUT_REDIRECT_URL = "login"
+

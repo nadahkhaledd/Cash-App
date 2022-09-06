@@ -2,26 +2,23 @@ version: "3.9"
 
 services:
   db:
-    image: mysql
+    image: postgres
     volumes:
-      - ./data/db:/var/lib/mysql/data
+      - ./data/db:/var/lib/postgresql/data
     environment:
-      - MYSQL_DB=cashapp
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=0000
-      - MYSQL_HOST=db
-
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
   web:
     build: .
-    command: python manage.py runserver 0.0.0.0:8000
+    command: bash -c "python manage.py makemigrations && python manage.py migrate &&python manage.py runserver 0.0.0.0:8000"
     volumes:
       - .:/code
     ports:
       - "8000:8000"
     environment:
-      - MYSQL_DB=cashapp
-      - MYSQL_USER=root
-      - MYSQL_PASSWORD=0000
-      - MYSQL_HOST=db
+      - POSTGRES_NAME=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
