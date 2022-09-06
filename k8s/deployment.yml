@@ -26,17 +26,17 @@ spec:
         env:
           - name: DEBUG
             value: "False"        
-          - name: SQL_USER
+          - name: POSTGRES_USER
             value: postres
-          - name: SQL_ENGINE
+          - name: POSTGRES_ENGINE
             value: django.db.backends.postgresql_psycopg2
-          - name: SQL_PASSWORD
+          - name: POSTGRES_PASSWORD
             value: postgres
-          - name: SQL_HOST
+          - name: POSTGRES_HOST
             value: postgres-internship-nadah
-          - name: SQL_PORT
+          - name: POSTGRES_PORT
             value: "5432"
-          - name: SQL_DB
+          - name: POSTGRES_NAME
             value: postgres
         volumeMounts:
         - mountPath: /usr/src/app/data
