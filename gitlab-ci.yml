@@ -1,14 +1,14 @@
 build:
   stage: build
   script:
-      - docker build -t http://docker.et3.co/internship.nadah:$CI_COMMIT_TAG -t http://docker.et3.co/internship.nadah:latest .
-      - docker push http://docker.et3.co/internship.nadah
+      - docker build -t docker.et3.co/internship.nadah:$CI_COMMIT_TAG -t docker.et3.co/internship.nadah:latest .
+      - docker push docker.et3.co/internship.nadah
   only:
     - tags
 test:
   stage: test
   script:
-      - docker run --rm http://docker.et3.co/internship.nadah python http://manage.py test
+      - docker run --rm docker.et3.co/internship.nadah python manage.py test
   only:
     - tags
 deploy:
