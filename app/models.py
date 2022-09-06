@@ -8,7 +8,7 @@ class Account(models.Model):
     number = models.CharField(max_length=150)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_created = models.DateField()
-    current_balance = models.FloatField(default=0.0, max_length=4)
+    current_balance = models.FloatField(default=0.0, max_length=5)
 
     def __str__(self):
         return self.number
