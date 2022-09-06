@@ -41,8 +41,6 @@ spec:
         volumeMounts:
         - mountPath: /usr/src/app/data
           name: nadah-internship-volume-mount
-        - mountPath: /usr/src/media
-          name: nadah-media-internship-volume-mount
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
@@ -52,7 +50,4 @@ spec:
       - name: nadah-internship-volume-mount
         persistentVolumeClaim:
           claimName: nadah-internship-pvc
-      - name: nadah-media-internship-volume-mount
-        persistentVolumeClaim:
-          claimName: nadah-media-internship-pvc
 
