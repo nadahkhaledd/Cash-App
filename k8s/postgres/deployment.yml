@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: ese
+  creationTimestamp: null
+  labels:
+    name: database
+  name: postgres-ese-communities
+spec:
+  progressDeadlineSeconds: 2147483647
+  replicas: 1
+  selector:
+    matchLabels:
+      service: postgres-ese-communities
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: postgres-ese-communities
+    spec:
+      containers:
+      - name: postgres-ese-communities
+        image: postgres:12.1-alpine
+        env:
+          - name: POSTGRES_USER
+            value: ese
+          - name: POSTGRES_PASSWORD
+            value: ese123
+        volumeMounts:
+        - mountPath: /var/lib/postgresql/data
+          name: postgres-ese-communities-volume-mount
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: postgres-ese-communities-volume-mount
+        persistentVolumeClaim:
+          claimName: postgres-ese-communities-pvc

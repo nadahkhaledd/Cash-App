@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  namespace: internship
+  name: nadah-internship-pv
+  labels:
+    type: local
+spec:
+  capacity:
+    storage: 0.1Gi
+  storageClassName: standard
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/data/communities-ese-pv"

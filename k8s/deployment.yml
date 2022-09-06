@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: internship
+  creationTimestamp: null
+  labels:
+    name: nadah
+  name: nadah-internship
+spec:
+  progressDeadlineSeconds: 2147483647
+  replicas: 1
+  selector:
+    matchLabels:
+      service: nadah-internship
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        service: nadah-internship
+    spec:
+      containers:
+      - name: nadah-internship
+        image: docker.et3.co/internship.nadah:latest
+        command: ["sh"]
+        args: ["runserver.sh"]
+        env:
+          - name: DEBUG
+            value: "False"        
+          - name: SQL_USER
+            value: internship
+          - name: SQL_ENGINE
+            value: django.db.backends.postgresql_psycopg2
+          - name: SQL_PASSWORD
+            value: internship123
+          - name: SQL_HOST
+            value: postgres-internship-nadah
+          - name: SQL_PORT
+            value: "5432"
+          - name: SQL_DB
+            value: postgres
+          - name: MEDIA_ROOT
+            value: /usr/src/media
+        volumeMounts:
+        - mountPath: /usr/src/app/data
+          name: nadah-internship-volume-mount
+        - mountPath: /usr/src/media
+          name: nadah-media-internship-volume-mount
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+      volumes:
+      - name: nadah-internship-volume-mount
+        persistentVolumeClaim:
+          claimName: nadah-internship-pvc
+      - name: nadah-media-internship-volume-mount
+        persistentVolumeClaim:
+          claimName: nadah-media-internship-pvc
+

@@ -8,26 +8,26 @@ class Account(models.Model):
     number = models.CharField(max_length=150)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     date_created = models.DateField()
-    current_balance = models.FloatField(default=0.0)
+    current_balance = models.FloatField(default=0.0, max_length=4)
 
     def __str__(self):
         return self.number
 
     @classmethod
     def confirm_transfer(cls, amount, recievant, sender):
-        amount = float(amount)
+        amount = round(float(amount),2)
         if sender.current_balance >= amount:
             receiver_account = Account.objects.filter(number=recievant)
             if receiver_account.exists():
                 if recievant != sender:
                     receiver_account = receiver_account[0]
+                    sender.current_balance -= amount
+                    sender.save(update_fields=['current_balance'])
                     fees = amount * 0.04
                     amount -= fees
                     receiver_account.current_balance += amount
                     receiver_account.save(update_fields=['current_balance'])
-                    sender.current_balance -= amount
-                    sender.save(update_fields=['current_balance'])
-                    transaction = Transaction(amount=amount, fees=fees, type='TR', receivant=receiver_account,
+                    transaction = Transaction(amount=round(amount,2), fees=fees, type='TR', receivant=receiver_account,
                                               sender=sender)
                     transaction.save()
                     return True
