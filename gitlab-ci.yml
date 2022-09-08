@@ -1,28 +1,28 @@
 build:
   stage: build
   script:
-      - docker build -t docker.et3.co/internship.nadah:$CI_COMMIT_TAG -t docker.et3.co/internship.nadah:latest .
-      - docker push docker.et3.co/internship.nadah
+    - docker build -t docker.et3.co/internship.nadah:$CI_COMMIT_TAG -t docker.et3.co/internship.nadah:latest .
+    - docker push docker.et3.co/internship.nadah
   only:
     - tags
 test:
   stage: test
   script:
-      - docker run --rm docker.et3.co/internship.nadah python manage.py test
+    - docker run --rm docker.et3.co/internship.nadah python manage.py test
   only:
     - tags
 deploy:
   stage: deploy
   script:
-      - kubectl apply -f ./k8s/postgres/persistent-volume.yml
-      - kubectl apply -f ./k8s/postgres/persistent-volume-claim.yml
-      - kubectl apply -f ./k8s/postgres/deployment.yml
-      - kubectl apply -f ./k8s/postgres/service.yml
-      - kubectl apply -f ./k8s/persistent-volume.yml
-      - kubectl apply -f ./k8s/persistent-volume-claim.yml
-      - kubectl delete --ignore-not-found -f ./k8s/deployment.yml
-      - kubectl apply -f ./k8s/deployment.yml
-      - kubectl apply -f ./k8s/service.yml
-      - kubectl apply -f ./k8s/ingress.yml
+    - kubectl apply -f ./k8s/postgres/persistent-volume.yml
+    - kubectl apply -f ./k8s/postgres/persistent-volume-claim.yml
+    - kubectl apply -f ./k8s/postgres/deployment.yml
+    - kubectl apply -f ./k8s/postgres/service.yml
+    - kubectl apply -f ./k8s/persistent-volume.yml
+    - kubectl apply -f ./k8s/persistent-volume-claim.yml
+    - kubectl delete --ignore-not-found -f ./k8s/deployment.yml
+    - kubectl apply -f ./k8s/deployment.yml
+    - kubectl apply -f ./k8s/service.yml
+    - kubectl apply -f ./k8s/ingress.yml
   only:
     - tags
