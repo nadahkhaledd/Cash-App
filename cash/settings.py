@@ -26,9 +26,10 @@ SECRET_KEY = 'django-insecure-&w39kgo#o!g1&vjc=y=^%&&zwo8)w_+8*8v(vu#(+fsf4()9(2
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
-
+# edgedriver path
+EDGE_DRIVER_PATH = '../../msedgedriver.exe'
 # Application definition
 
 INSTALLED_APPS = [
@@ -92,7 +93,7 @@ WSGI_APPLICATION = 'cash.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': os.environ.get('POSTGRES_NAME'),
+        'NAME': os.environ.get('POSTGRES_DB', 'db'),
         'USER': os.environ.get('POSTGRES_USER'),
         'PASSWORD': os.environ.get('POSTGRES_PASSWORD'),
         'HOST': os.environ.get('POSTGRES_HOST'),
