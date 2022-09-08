@@ -3,6 +3,7 @@ version: "3.9"
 services:
   db:
     image: postgres
+    restart: always
     volumes:
       - ./data/db:/var/lib/postgresql/data
     environment:
@@ -22,3 +23,11 @@ services:
       - POSTGRES_PASSWORD=postgres
     depends_on:
       - db
+  pgadmin:
+    image: dpage/pgadmin4
+    restart: always
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=nadahkhaledd@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=postgres
+    ports:
+      - "8080:80"
