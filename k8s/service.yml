@@ -10,6 +10,5 @@ spec:
     service: nadah-internship
   type: ClusterIP
   ports:
-  - name: web
-    port: 8000
-
+    - name: web
+      port: 8000

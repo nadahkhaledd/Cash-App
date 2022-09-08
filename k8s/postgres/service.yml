@@ -10,4 +10,4 @@ spec:
     service: postgres-internship-nadah
   type: ClusterIP
   ports:
-  - port: 5432
+    - port: 5432

@@ -19,35 +19,36 @@ spec:
         service: nadah-internship
     spec:
       containers:
-      - name: nadah-internship
-        image: docker.et3.co/internship.nadah:latest
-        command: ["sh"]
-        args: ["runserver.sh"]
-        env:
-          - name: DEBUG
-            value: "False"        
-          - name: POSTGRES_USER
-            value: postres
-          - name: POSTGRES_ENGINE
-            value: django.db.backends.postgresql_psycopg2
-          - name: POSTGRES_PASSWORD
-            value: postgres
-          - name: POSTGRES_HOST
-            value: postgres-internship-nadah
-          - name: POSTGRES_PORT
-            value: "5432"
-          - name: POSTGRES_NAME
-            value: postgres
-        volumeMounts:
-        - mountPath: /usr/src/app/data
-          name: nadah-internship-volume-mount
+        - name: nadah-internship
+          image: docker.et3.co/internship.nadah:latest
+          command: ["sh"]
+          args: ["runserver.sh"]
+          env:
+            - name: DEBUG
+              value: "False"
+            - name: POSTGRES_USER
+              value: internship
+            - name: POSTGRES_ENGINE
+              value: django.db.backends.postgresql_psycopg2
+            - name: POSTGRES_PASSWORD
+              value: internship123
+            - name: POSTGRES_HOST
+              value: postgres-internship-nadah
+            - name: POSTGRES_PORT
+              value: "5432"
+            - name: POSTGRES_DB
+              value: postgres
+          volumeMounts:
+            - mountPath: /usr/src/app/data
+              name: nadah-internship-volume-mount
+            
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
       volumes:
-      - name: nadah-internship-volume-mount
-        persistentVolumeClaim:
-          claimName: nadah-internship-pvc
-
+        - name: nadah-internship-volume-mount
+          persistentVolumeClaim:
+            claimName: nadah-internship-pvc
+        

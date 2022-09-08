@@ -19,22 +19,22 @@ spec:
         service: postgres-internship-nadah
     spec:
       containers:
-      - name: postgres-internship-nadah
-        image: postgres:12.1-alpine
-        env:
-          - name: POSTGRES_USER
-            value: postgres
-          - name: POSTGRES_PASSWORD
-            value: postgres
-        volumeMounts:
-        - mountPath: /var/lib/postgresql/data
-          name: postgres-internship-nadah-volume-mount
+        - name: postgres-internship-nadah
+          image: postgres:12.1-alpine
+          env:
+            - name: POSTGRES_USER
+              value: internship
+            - name: POSTGRES_PASSWORD
+              value: internship123
+          volumeMounts:
+            - mountPath: /var/lib/postgresql/data
+              name: postgres-internship-nadah-volume-mount
       dnsPolicy: ClusterFirst
       restartPolicy: Always
       schedulerName: default-scheduler
       securityContext: {}
       terminationGracePeriodSeconds: 30
       volumes:
-      - name: postgres-internship-nadah-volume-mount
-        persistentVolumeClaim:
-          claimName: postgres-internship-nadah-pvc
+        - name: postgres-internship-nadah-volume-mount
+          persistentVolumeClaim:
+            claimName: postgres-internship-nadah-pvc

@@ -11,14 +11,15 @@ metadata:
     service: nadah-internship
 spec:
   tls:
-  - hosts:
-    - nadah.internship.et3.co
-    secretName: nadah.internship.et3.co-cert
+    - hosts:
+        - nadah.internship.et3.co
+      secretName: nadah.internship.et3.co-cert
   rules:
-  - host: nadah.internship.et3.co
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: nadah-internship
-          servicePort: 8000
+    - host: nadah.internship.et3.co
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: nadah-internship
+              servicePort: 8000
+         
